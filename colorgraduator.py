@@ -306,7 +306,7 @@ def main():
         layout='wide'
     )
     st.title('ColorGraduator')
-    st.write('段階的グラデーションを作成')
+    st.write('段階的グラデーション作成アプリ')
 
     if 'cm' not in st.session_state:
         # On app startup
