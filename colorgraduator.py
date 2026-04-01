@@ -289,13 +289,24 @@ def callback_reverse_cm(
     Reverse a colomap and update some st.session_state.
     """
     list_rgb_new = list_rgb[::-1]
-    cm_new = create_cm(
-        list_rgb=list_rgb_new,
-        cm_name=cm_name
-    )
+
+    if cm_name == 'cm':
+        cm_name_new = cm_name
+        cm_new = create_cm(
+            list_rgb=list_rgb_new,
+            cm_name=cm_name
+        )
+    else:
+        if cm_name.endswith('_r'):
+            cm_name_new = cm_name.removesuffix('_r')
+        else:
+            cm_name_new = cm_name + '_r'
+
+        cm_new = plt.get_cmap(cm_name_new)
+
     st.session_state['num_div'] = num_div
     st.session_state['list_rgb'] = list_rgb_new
-    st.session_state['cm_name'] = cm_name
+    st.session_state['cm_name'] = cm_name_new
     st.session_state['cm'] = cm_new
 
 
